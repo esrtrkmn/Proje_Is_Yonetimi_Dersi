@@ -1,3 +1,5 @@
+Imports System.Data.SqlClient
+
 Public Class veli_bilgileri
     Private ogr_no As Integer
     Private veli_tcno As String
@@ -24,4 +26,15 @@ Public Class veli_bilgileri
     Public ad As String
     Public soyad As String
     
-    //sql baglantıları - fonksiyonlar
+    Private sql As String
+    Private baglanti As New SqlConnection("server=.\SQLEXPRESS; database=proje; trusted_connection=yes;")
+    Private com As New SqlCommand()
+    Sub baglan()
+        com.Connection = baglanti
+        com.CommandText = sql
+        baglanti.Open()
+        com.ExecuteNonQuery()
+        baglanti.Close()
+    End Sub
+    
+    
